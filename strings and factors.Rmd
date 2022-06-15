@@ -154,4 +154,24 @@ data_marj =
   
 ```
 
+## NSDUH -- factors
+
+```{r}
+data_marj %>% 
+  filter(age == "12-17") %>% 
+  mutate(State = fct_relevel(State, "Texas", "Oklahoma")) %>% 
+  ggplot(aes(State, y = percent, color = year)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r}
+data_marj %>% 
+  filter(age == "12-17") %>% 
+  mutate(State = fct_reorder(State, percent)) %>% 
+  ggplot(aes(State, y = percent, color = year)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+```
 
